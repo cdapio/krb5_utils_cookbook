@@ -66,7 +66,7 @@ keytab_dir = node['krb5_utils']['keytabs_dir']
       owner opts.owner
       group opts.group
       mode opts.mode
-      action :touch
+      action :nothing
     end
   end
 end
@@ -91,6 +91,7 @@ ruby_block "generate-keytabs" do
 
         resources(:execute => "krb5-addprinc-#{principal}").run_action(:run)
         resources(:execute => "krb5-generate-keytab-#{keytab_file}").run_action(:run)
+        resources(:file => "#{keytab_dir}/#{keytab_file}").run_action(:touch)
       end
     end
   end
