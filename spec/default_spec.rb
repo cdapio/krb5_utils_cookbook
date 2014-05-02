@@ -18,5 +18,12 @@ describe 'krb5_utils::default' do
     it 'creates /etc/security/keytabs directory' do
       expect(chef_run).to create_directory('/etc/security/keytabs')
     end
+
+    %w(kdestroy kinit-as-admin-user).each do |exec|
+      it "executes #{exec} resource" do
+        expect(chef_run).to run_execute(exec)
+      end
+    end
+
   end
 end
