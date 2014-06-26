@@ -15,6 +15,10 @@ describe 'krb5_utils::default' do
       end.converge(described_recipe)
     end
 
+    it 'installs kstart package' do
+      expect(chef_run).to install_package('kstart')
+    end
+
     it 'creates /etc/security/keytabs directory' do
       expect(chef_run).to create_directory('/etc/security/keytabs')
     end
