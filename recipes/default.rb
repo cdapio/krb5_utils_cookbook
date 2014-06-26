@@ -19,6 +19,10 @@
 
 include_recipe 'krb5::default'
 
+# Install 'kstart' for k5start command
+include_recipe 'yum-epel::default' if node['platform_family'] == 'rhel'
+package 'kstart'
+
 directory node['krb5_utils']['keytabs_dir'] do
   owner 'root'
   group 'root'
