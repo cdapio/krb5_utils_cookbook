@@ -50,12 +50,12 @@ keytab_dir = node['krb5_utils']['keytabs_dir']
       http_principal = "HTTP/#{node['fqdn']}@#{node['krb5']['krb5_conf']['realms']['default_realm'].upcase}"
       principal = "#{name}/#{node['fqdn']}@#{node['krb5']['krb5_conf']['realms']['default_realm'].upcase}"
       keytab_file = "#{name}.service.keytab"
-      randkey = "-randkey"
+      randkey = '-randkey'
     when 'krb5_user_keytabs'
       http_principal = ''
       principal = "#{name}@#{node['krb5']['krb5_conf']['realms']['default_realm'].upcase}"
       keytab_file = "#{name}.keytab"
-      randkey = "-norandkey"
+      randkey = '-norandkey'
     end
 
     execute "krb5-addprinc-#{principal}" do
