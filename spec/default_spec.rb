@@ -35,5 +35,22 @@ describe 'krb5_utils::default' do
       end
     end
 
+    %w(krb5-addprinc krb5-check).each do |execute|
+      %w(HTTP/fauxhai.local hdfs/fauxhai.local yarn).each do |princ|
+        it "executes #{execute}-#{princ}@EXAMPLE.COM" do
+          expect(chef_run).to run_execute("#{execute}-#{princ}@EXAMPLE.COM")
+        end
+      end
+    end
+
+    %w(HTTP.service hdfs.service yarn).each do |princ|
+      it "executes krb5-generate-keytab-#{princ}.keytab" do
+        expect(chef_run).to run_execute("krb5-generate-keytab-#{princ}.keytab")
+      end
+      it "creates file /etc/security/keytabs/#{princ}.keytab" do
+        expect(chef_run).not_to create_file("/etc/security/keytabs/#{princ}.keytab")
+      end
+    end
+
   end
 end
