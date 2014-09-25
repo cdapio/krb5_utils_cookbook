@@ -1,17 +1,23 @@
 require 'spec_helper'
 
 describe 'krb5_utils::default' do
-  context 'on Centos 6.4 x86_64' do
+  context 'on Centos 6.5 x86_64' do
     let(:chef_run) do
-      ChefSpec::Runner.new(platform: 'centos', version: 6.4) do |node|
+      ChefSpec::Runner.new(platform: 'centos', version: 6.5) do |node|
         node.automatic['domain'] = 'example.com'
-        node.default['krb5_utils']['krb5_service_keytabs'] = {
+        node.override['krb5_utils']['krb5_service_keytabs'] = {
           'HTTP' => { 'owner' => 'hdfs', 'group' => 'hadoop', 'mode' => '0640' },
           'hdfs' => { 'owner' => 'hdfs', 'group' => 'hadoop', 'mode' => '0640' }
         }
-        node.default['krb5_utils']['krb5_user_keytabs'] = {
+        node.override['krb5_utils']['krb5_user_keytabs'] = {
           'yarn' => { 'owner' => 'yarn', 'group' => 'hadoop', 'mode' => '0640' }
         }
+        stub_command("kadmin -w password -q 'list_principals' | grep -v Auth | grep '^HTTP/fauxhai.local@EXAMPLE.COM'").and_return(false)
+        stub_command("kadmin -w password -q 'list_principals' | grep -v Auth | grep '^hdfs/fauxhai.local@EXAMPLE.COM'").and_return(false)
+        stub_command("kadmin -w password -q 'list_principals' | grep -v Auth | grep '^yarn@EXAMPLE.COM'").and_return(false)
+        stub_command('test -e /etc/security/keytabs/HTTP.service.keytab').and_return(false)
+        stub_command('test -e /etc/security/keytabs/hdfs.service.keytab').and_return(false)
+        stub_command('test -e /etc/security/keytabs/yarn.keytab').and_return(false)
       end.converge(described_recipe)
     end
 
