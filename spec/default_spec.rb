@@ -5,6 +5,7 @@ describe 'krb5_utils::default' do
     let(:chef_run) do
       ChefSpec::Runner.new(platform: 'centos', version: 6.5) do |node|
         node.automatic['domain'] = 'example.com'
+        node.override['krb5']['krb5_conf']['libdefaults']['default_realm'] = 'EXAMPLE.COM'
         node.override['krb5_utils']['krb5_service_keytabs'] = {
           'HTTP' => { 'owner' => 'hdfs', 'group' => 'hadoop', 'mode' => '0640' },
           'hdfs' => { 'owner' => 'hdfs', 'group' => 'hadoop', 'mode' => '0640' }
