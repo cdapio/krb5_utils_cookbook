@@ -87,9 +87,9 @@ Vagrant.configure('2') do |config|
       :krb5 => {
         :default_realm => 'HADOOP.LOCAL',
         :default_realm_kdcs => [
-          '166.78.60.47'
+          'localhost'
         ],
-        :default_realm_admin_server => '166.78.60.47'
+        :default_realm_admin_server => 'localhost'
       },
       :krb5_utils => {
         :krb5_service_keytabs => {
@@ -107,7 +107,7 @@ Vagrant.configure('2') do |config|
       },
       :hadoop => {
         :core_site => {
-          'fs.defaultFS' => 'hdfs://166.78.60.47',
+          'fs.defaultFS' => 'hdfs://localhost',
           'hadoop.security.authentication' => 'kerberos',
           'hadoop.security.authorization' => true
         },
