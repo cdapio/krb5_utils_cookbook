@@ -8,3 +8,7 @@ version          '0.1.1'
 
 depends 'krb5', '~> 1.0'
 depends 'yum-epel'
+
+%w(amazon centos debian redhat scientific ubuntu).each do |os|
+  supports os
+end
