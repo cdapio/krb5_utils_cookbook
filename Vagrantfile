@@ -72,11 +72,6 @@ Vagrant.configure('2') do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
-      :mysql => {
-        :server_root_password => 'rootpass',
-        :server_debian_password => 'debpass',
-        :server_repl_password => 'replpass'
-      },
       :java => {
         :install_flavor => 'oracle',
         :jdk_version => '6',
@@ -85,7 +80,6 @@ Vagrant.configure('2') do |config|
         }
       },
       :krb5 => {
-        :default_realm => 'HADOOP.LOCAL',
         :default_realm_kdcs => [
           'localhost'
         ],
@@ -104,30 +98,11 @@ Vagrant.configure('2') do |config|
             :mode => '0640'
           }
         }
-      },
-      :hadoop => {
-        :core_site => {
-          'fs.defaultFS' => 'hdfs://localhost',
-          'hadoop.security.authentication' => 'kerberos',
-          'hadoop.security.authorization' => true
-        },
-        :hdfs_site => {
-          'dfs.block.access.token.enable' => true,
-          'dfs.datanode.kerberos.principal' => 'hdfs/_HOST@HADOOP.LOCAL',
-          'dfs.namenode.kerberos.principal' => 'hdfs/_HOST@HADOOP.LOCAL',
-          'dfs.web.authentication.kerberos.principal' => 'HTTP/_HOST@HADOOP.LOCAL',
-          'dfs.datanode.keytab.file' => '/etc/security/keytabs/hdfs.service.keytab',
-          'dfs.namenode.keytab.file' => '/etc/security/keytabs/hdfs.service.keytab',
-          'dfs.datanode.address' => '0.0.0.0:1004',
-          'dfs.datanode.http.address' => '0.0.0.0:1006'
-        }
       }
     }
 
     chef.run_list = [
       'recipe[minitest-handler::default]',
-      'recipe[java::default]',
-      'recipe[hadoop::default]',
       'recipe[krb5_utils::default]'
     ]
   end
