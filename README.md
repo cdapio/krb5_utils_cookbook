@@ -2,12 +2,12 @@
 
 # Requirements
 
-This cookbook requires the `krb5` cookbook, version `1.0.0` or greater.
+This cookbook requires the `krb5` cookbook, version `1.0.4` or greater.
 
 # Usage
 
 This cookbook is intended for use in creating secure Hadoop clusters. As such, it will add the HTTP service
-principal to all other service principals.
+principal to all other service principals. This can be disabled by setting `krb5_utils['add_http_principal']` to `false`.
 
 # Attributes
 
