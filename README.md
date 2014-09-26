@@ -1,5 +1,8 @@
 # krb5_utils cookbook
 
+[![Cookbook Version](http://img.shields.io/cookbook/v/krb5_utils.svg)](https://supermarket.getchef.com/cookbooks/krb5_utils)
+[![Build Status](http://img.shields.io/travis/caskdata/krb5_utils_cookbook.svg)](http://travis-ci.org/caskdata/krb5_utils_cookbook)
+
 # Requirements
 
 This cookbook requires the `krb5` cookbook, version `1.0.4` or greater.
