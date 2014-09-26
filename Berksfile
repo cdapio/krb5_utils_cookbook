@@ -6,8 +6,4 @@ group :integration do
   cookbook 'java'
 end
 
-group :dependencies do
-  cookbook 'krb5', github: 'dereklwood/cookbook-krb5'
-end
-
 metadata
