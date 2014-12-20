@@ -52,6 +52,5 @@ describe 'krb5_utils::default' do
         expect(chef_run).not_to create_file("/etc/security/keytabs/#{princ}.keytab")
       end
     end
-
   end
 end
