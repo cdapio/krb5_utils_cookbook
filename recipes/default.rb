@@ -25,5 +25,5 @@ package 'kstart'
 
 # Generate any defined keytabs
 unless node['krb5_utils']['krb5_service_keytabs'].empty? && node['krb5_utils']['krb5_user_keytabs'].empty?
-  include_recipe 'krb5::generate_keytabs'
+  include_recipe 'krb5_utils::generate_keytabs'
 end

@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'krb5::kinit_as_admin'
+include_recipe 'krb5_utils::kinit_as_admin'
 
 keytab_dir = node['krb5_utils']['keytabs_dir']
 
