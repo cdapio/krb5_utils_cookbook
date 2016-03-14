@@ -22,6 +22,7 @@ include_recipe 'krb5::default'
 execute 'kdestroy' do
   command 'kdestroy'
   action :run
+  only_if { node['krb5_utils']['destroy_before_kinit'].to_s == 'true' }
 end
 
 execute 'kinit-as-admin-user' do
