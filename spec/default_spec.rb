@@ -13,7 +13,7 @@ describe 'krb5_utils::default' do
         node.override['krb5_utils']['krb5_user_keytabs'] = {
           'yarn' => { 'owner' => 'yarn', 'group' => 'hadoop', 'mode' => '0640' }
         }
-        stub_command(/kadmin -w password -q 'list_principals'/).and_return(false)
+        stub_command(/kadmin -w password -q/).and_return(false)
         stub_command(/test -e /).and_return(false)
       end.converge(described_recipe)
     end
