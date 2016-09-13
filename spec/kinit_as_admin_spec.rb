@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'krb5_utils::default' do
+describe 'krb5_utils::kinit_as_admin' do
   context 'on Centos 6.6 x86_64' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(platform: 'centos', version: 6.6) do |node|
@@ -18,8 +18,10 @@ describe 'krb5_utils::default' do
       end.converge(described_recipe)
     end
 
-    it 'installs kstart package' do
-      expect(chef_run).to install_package('kstart')
+    %w(kdestroy kinit-as-admin-user).each do |exec|
+      it "executes #{exec} resource" do
+        expect(chef_run).to run_execute(exec)
+      end
     end
   end
 end
