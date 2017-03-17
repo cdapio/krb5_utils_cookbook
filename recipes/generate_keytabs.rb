@@ -2,7 +2,7 @@
 # Cookbook Name:: krb5_utils
 # Recipe:: generate_keytabs
 #
-# Copyright © 2016 Cask Data, Inc.
+# Copyright © 2016-2017 Cask Data, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ end
 # Generate execute blocks
 %w(krb5_service_keytabs krb5_user_keytabs).each do |kt|
   node['krb5_utils'][kt].each do |name, opts|
+    randkey = ''
     case kt
     when 'krb5_service_keytabs'
       http_principal = if node['krb5_utils']['add_http_principal']
@@ -45,7 +46,6 @@ end
       http_principal = ''
       principal = "#{name}@#{node['krb5']['krb5_conf']['libdefaults']['default_realm'].upcase}"
       keytab_file = "#{name}.keytab"
-      randkey = '-norandkey'
     end
 
     execute "krb5-addprinc-#{principal}" do
