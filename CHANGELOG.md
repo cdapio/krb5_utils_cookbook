@@ -1,6 +1,10 @@
 krb_utils CHANGELOG
 ===================
 
+v0.2.3 (Mar 22, 2017)
+---------------------
+- Remove -norandkey ( Issues: #18 [COOK-29](https://issues.cask.co/browse/COOK-29) )
+
 v0.2.2 (Sep 16, 2016)
 ---------------------
 - Set ntp.sync_clock to true for users of ntp cookbook ( Issue: #14 )
