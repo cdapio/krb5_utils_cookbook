@@ -4,6 +4,12 @@
 [![Apache License 2.0](http://img.shields.io/badge/license-apache%202.0-green.svg)](http://opensource.org/licenses/Apache-2.0)
 [![Build Status](http://img.shields.io/travis/caskdata/krb5_utils_cookbook.svg)](http://travis-ci.org/caskdata/krb5_utils_cookbook)
 
+# DEPRECATED
+
+THIS COOKBOOK HAS BEEN DEPRECATED!
+
+Please, use the `krb5_principal` and `krb5_keytab` LWRPs in the `krb5` cookbook, instead.
+
 # Requirements
 
 This cookbook requires the `krb5` cookbook, version `1.0.4` or greater.
