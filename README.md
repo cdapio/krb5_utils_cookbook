@@ -1,6 +1,7 @@
 # krb5_utils cookbook
 
 [![Cookbook Version](http://img.shields.io/cookbook/v/krb5_utils.svg)](https://supermarket.getchef.com/cookbooks/krb5_utils)
+[![Apache License 2.0](http://img.shields.io/badge/license-apache%202.0-green.svg)](http://opensource.org/licenses/Apache-2.0)
 [![Build Status](http://img.shields.io/travis/caskdata/krb5_utils_cookbook.svg)](http://travis-ci.org/caskdata/krb5_utils_cookbook)
 
 # Requirements
@@ -27,7 +28,7 @@ Hash format:
 
 # License
 
-Copyright © 2014-2016 Cask Data, Inc.
+Copyright © 2014-2017 Cask Data, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
